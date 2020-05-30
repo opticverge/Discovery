@@ -6,7 +6,6 @@ namespace Discovery.Core
     public class DoubleDiscoverableArgs
     {
         public int? Seed { get; set; }
-
         public double? LowerBound { get; set; }
         public double? UpperBound { get; set; }
         public IDoubleGenerator Generator { get; set; }
@@ -15,17 +14,14 @@ namespace Discovery.Core
 
     public class DoubleDiscoverable : IDoubleDiscoverable
     {
-        private IDoubleGenerator _generator;
-
         private readonly DoubleDiscoverableArgs _args;
-
-        public readonly bool IsBounded;
 
         private readonly double _lowerBound;
 
         private readonly double _upperBound;
 
-        public double? Value { get; private set; }
+        public readonly bool IsBounded;
+        private readonly IDoubleGenerator _generator;
 
         public DoubleDiscoverable(DoubleDiscoverableArgs args = null)
         {
@@ -33,7 +29,7 @@ namespace Discovery.Core
 
             Value = args?.Value;
 
-            _generator = args?.Generator ?? new RandomGenerator(args?.Seed);
+            _generator = args?.Generator ?? new XorShiftPlusGenerator(args?.Seed);
 
             var lowerBoundHasValue = Convert.ToBoolean(args?.LowerBound.HasValue);
             var upperBoundHasValue = Convert.ToBoolean(args?.UpperBound.HasValue);
@@ -43,20 +39,22 @@ namespace Discovery.Core
             IsBounded = lowerBoundHasValue && upperBoundHasValue;
 
             if (lowerBoundHasValue && upperBoundHasValue && _upperBound < _lowerBound)
-            {
                 throw new ArgumentException(
                     $"{nameof(args.UpperBound)} ({_upperBound}) must be greater than {nameof(args.LowerBound)} ({_lowerBound})");
-            }
         }
 
-        public double? Generate()
+        public double? Value { get; private set; }
+
+        public virtual double? Generate()
         {
             return Value = IsBounded ? _generator.NextDouble(_lowerBound, _upperBound) : _generator.NextDouble();
         }
 
-        public double? Mutate(double? probability = 0.05)
+        public virtual double? Mutate(double? probability = 0.05)
         {
-            return Value = probability.HasValue && _generator.NextDouble() < probability ? Generate() : Value;
+            if (probability.HasValue && _generator.NextDouble() < probability) return Generate();
+
+            return Value;
         }
     }
 }
