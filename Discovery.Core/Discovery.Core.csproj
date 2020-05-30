@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Discovery.Generator\Discovery.Generator.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="OneOf" Version="2.1.151" />
+    </ItemGroup>
+
 </Project>
