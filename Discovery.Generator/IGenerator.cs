@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Discovery.Generator
+﻿namespace Discovery.Generator
 {
-    public interface IGenerator
+    public interface IGenerator : IDoubleGenerator, IBooleanGenerator, IIntGenerator
     {
     }
 }
