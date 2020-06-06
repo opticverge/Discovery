@@ -13,8 +13,8 @@ namespace Discovery.Core.Tests
 
             // assert
             Assert.NotNull(target);
-            Assert.Null(target.Genotype);
-            Assert.Null(target.Arguments);
+            Assert.NotNull(target.Arguments);
+            Assert.NotNull(target.Genotype);
         }
 
         [Fact]
