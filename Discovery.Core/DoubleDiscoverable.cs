@@ -14,33 +14,34 @@ namespace Discovery.Core
 
     public class DoubleDiscoverable : IDoubleDiscoverable
     {
-        private readonly DoubleDiscoverableArgs _args;
+        public DoubleDiscoverableArgs Arguments;
 
         private readonly double _lowerBound;
 
         private readonly double _upperBound;
 
         public readonly bool IsBounded;
+
         private readonly IDoubleGenerator _generator;
 
-        public DoubleDiscoverable(DoubleDiscoverableArgs args = null)
+        public DoubleDiscoverable(DoubleDiscoverableArgs arguments = null)
         {
-            _args = args;
+            Arguments = arguments;
 
-            Value = args?.Value;
+            Value = arguments?.Value;
 
-            _generator = args?.Generator ?? new XorShiftPlusGenerator(args?.Seed);
+            _generator = arguments?.Generator ?? new XorShiftPlusGenerator(arguments?.Seed);
 
-            var lowerBoundHasValue = Convert.ToBoolean(args?.LowerBound.HasValue);
-            var upperBoundHasValue = Convert.ToBoolean(args?.UpperBound.HasValue);
-            _lowerBound = lowerBoundHasValue ? args.LowerBound.Value : default;
-            _upperBound = upperBoundHasValue ? args.UpperBound.Value : default;
+            var lowerBoundHasValue = Convert.ToBoolean(arguments?.LowerBound.HasValue);
+            var upperBoundHasValue = Convert.ToBoolean(arguments?.UpperBound.HasValue);
+            _lowerBound = lowerBoundHasValue ? arguments.LowerBound.Value : default;
+            _upperBound = upperBoundHasValue ? arguments.UpperBound.Value : default;
 
             IsBounded = lowerBoundHasValue && upperBoundHasValue;
 
             if (lowerBoundHasValue && upperBoundHasValue && _upperBound < _lowerBound)
                 throw new ArgumentException(
-                    $"{nameof(args.UpperBound)} ({_upperBound}) must be greater than {nameof(args.LowerBound)} ({_lowerBound})");
+                    $"{nameof(arguments.UpperBound)} ({_upperBound}) must be greater than {nameof(arguments.LowerBound)} ({_lowerBound})");
         }
 
         public double? Value { get; private set; }
