@@ -1,6 +1,6 @@
 namespace Discovery.Core
 {
-    public interface IIntDiscoverable : IDiscoverable<int>
+    public interface IIntDiscoverable : IDiscoverable<int?>
     {
     }
 }

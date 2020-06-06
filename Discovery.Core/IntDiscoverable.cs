@@ -47,12 +47,12 @@ namespace Discovery.Core
 
         public bool IsBounded { get; }
 
-        public int Generate()
+        public int? Generate()
         {
             return Value = IsBounded ? _generator.NextInt(_lowerBound, _upperBound) : _generator.NextInt();
         }
 
-        public int Mutate(double? probability)
+        public int? Mutate(double? probability)
         {
             if (probability.HasValue && _generator.NextDouble() < probability) return Generate();
 
