@@ -52,26 +52,25 @@ namespace Discovery.Core.Tests
         }
 
         [Theory]
-        [InlineAutoData(null, null, null, false, null)]
-        [InlineAutoData(null, null, false, false, null)]
-        [InlineAutoData(null, null, true, true, null)]
-        [InlineAutoData(0.5, null, null, false, null)]
-        [InlineAutoData(0.5, null, false, false, null)]
-        [InlineAutoData(0.5, null, true, true, null)]
-        [InlineAutoData(null, 42, null, false, null)]
-        [InlineAutoData(null, 42, false, false, null)]
-        [InlineAutoData(null, 42, true, true, null)]
-        [InlineAutoData(0.5, 42, null, false, null)]
-        [InlineAutoData(0.5, 42, false, false, null)]
-        [InlineAutoData(0.5, 42, true, true, null)]
-        [InlineAutoData(0.5, 42, null, false)]
-        [InlineAutoData(0.5, 42, false, false)]
-        [InlineAutoData(0.5, 42, true, true)]
+        [InlineAutoData(null, null, null, null)]
+        [InlineAutoData(null, null, false, null)]
+        [InlineAutoData(null, null, true, null)]
+        [InlineAutoData(0.5, null, null, null)]
+        [InlineAutoData(0.5, null, false, null)]
+        [InlineAutoData(0.5, null, true, null)]
+        [InlineAutoData(null, 42, null, null)]
+        [InlineAutoData(null, 42, false, null)]
+        [InlineAutoData(null, 42, true, null)]
+        [InlineAutoData(0.5, 42, null, null)]
+        [InlineAutoData(0.5, 42, false, null)]
+        [InlineAutoData(0.5, 42, true, null)]
+        [InlineAutoData(0.5, 42, null)]
+        [InlineAutoData(0.5, 42, false)]
+        [InlineAutoData(0.5, 42, true)]
         public void Generate_Should_Follow_Process(
             double? location,
             int? seed,
             bool? value,
-            bool expectedValue,
             Mock<IGenerator> generator
         )
         {
@@ -97,26 +96,25 @@ namespace Discovery.Core.Tests
         }
 
         [Theory]
-        [InlineAutoData(null, null, null, false, null)]
-        [InlineAutoData(null, null, false, false, null)]
-        [InlineAutoData(null, null, true, true, null)]
-        [InlineAutoData(0.5, null, null, false, null)]
-        [InlineAutoData(0.5, null, false, false, null)]
-        [InlineAutoData(0.5, null, true, true, null)]
-        [InlineAutoData(null, 42, null, false, null)]
-        [InlineAutoData(null, 42, false, false, null)]
-        [InlineAutoData(null, 42, true, true, null)]
-        [InlineAutoData(0.5, 42, null, false, null)]
-        [InlineAutoData(0.5, 42, false, false, null)]
-        [InlineAutoData(0.5, 42, true, true, null)]
-        [InlineAutoData(0.5, 42, null, false)]
-        [InlineAutoData(0.5, 42, false, false)]
-        [InlineAutoData(0.5, 42, true, true)]
+        [InlineAutoData(null, null, null, null)]
+        [InlineAutoData(null, null, false, null)]
+        [InlineAutoData(null, null, true, null)]
+        [InlineAutoData(0.5, null, null, null)]
+        [InlineAutoData(0.5, null, false, null)]
+        [InlineAutoData(0.5, null, true, null)]
+        [InlineAutoData(null, 42, null, null)]
+        [InlineAutoData(null, 42, false, null)]
+        [InlineAutoData(null, 42, true, null)]
+        [InlineAutoData(0.5, 42, null, null)]
+        [InlineAutoData(0.5, 42, false, null)]
+        [InlineAutoData(0.5, 42, true, null)]
+        [InlineAutoData(0.5, 42, null)]
+        [InlineAutoData(0.5, 42, false)]
+        [InlineAutoData(0.5, 42, true)]
         public void Mutate_Should_Follow_Process(
             double? location,
             int? seed,
             bool? value,
-            bool expectedValue,
             Mock<IGenerator> generator
         )
         {

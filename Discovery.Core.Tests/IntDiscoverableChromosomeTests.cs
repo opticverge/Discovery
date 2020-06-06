@@ -82,8 +82,7 @@ namespace Discovery.Core.Tests
             int? upperBound,
             int? value,
             OneOf<int?, IIntDiscoverable> seed,
-            Mock<IGenerator> generatorMock,
-            Mock<IIntDiscoverable> intDiscoverableMock
+            Mock<IGenerator> generatorMock
         )
         {
             // arrange
@@ -125,8 +124,7 @@ namespace Discovery.Core.Tests
             int? upperBound,
             int? value,
             OneOf<int?, IIntDiscoverable> seed,
-            Mock<IGenerator> generatorMock,
-            Mock<IIntDiscoverable> intDiscoverableMock
+            Mock<IGenerator> generatorMock
         )
         {
             // arrange
